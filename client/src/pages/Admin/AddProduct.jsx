@@ -106,7 +106,7 @@ const AddProduct = () => {
                                 onChange={formChange}
                                 className='py-2.5 px-6 text-white rounded-md outline-1 outline-gray-700 placeholder:text-gray-500 bg-slate-800'
                                 type="number"
-                                placeholder="$ 0.00"
+                                placeholder="₹ 0.00"
                             />
                         </div>
 
@@ -139,7 +139,8 @@ const AddProduct = () => {
                             <option value="" className='bg-slate-900'>Select Category</option>
                             <option value="shoes" className='bg-slate-900'>Shoes</option>
                             <option value="clothing" className='bg-slate-900'>Clothing</option>
-                            <option value="electronics" className='bg-slate-900'>Electronics</option>
+                            <option value="accessories" className='bg-slate-900'>Accessories</option>
+
                         </select>
                     </div>
 

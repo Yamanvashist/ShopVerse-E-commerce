@@ -2,14 +2,18 @@ import blueWoman from "../assets/blueWoman.png"
 import StreetWear from "../assets/StreetWear.jpg"
 import MinimalistImg from "../assets/Minimalist.png"
 import AccessoriesImg from "../assets/Accessories.jpg"
+import ItachiShoes from "../assets/ItachiShoes.jpg"
+import { useNavigate } from "react-router-dom"
 
 const HomePage = () => {
 
     const categories = [
-        { name: 'Streetwear', img: StreetWear },
-        { name: 'Minimalist', img: MinimalistImg }, // Swap with your actual image variable
-        { name: 'Accessories', img: AccessoriesImg } // Swap with your actual image variable
+        { name: 'Clothing', img: StreetWear },
+        { name: 'Shoes', img: ItachiShoes }, 
+        { name: 'Accessories', img: AccessoriesImg } 
     ];
+
+    const Navigate = useNavigate()
 
     return (
         <div className="w-full flex flex-col bg-slate-50 font-sans">
@@ -32,7 +36,7 @@ const HomePage = () => {
                     </p>
 
                     <div className="flex items-center gap-8 mt-4">
-                        <button className="bg-blue-900 text-white font-semibold px-8 py-4 rounded-lg shadow-md hover:bg-blue-800 transition-all cursor-pointer">
+                        <button onClick={()=>Navigate("/collections")} className="bg-blue-900 text-white font-semibold px-8 py-4 rounded-lg shadow-md hover:bg-blue-800 transition-all cursor-pointer">
                             Explore Collection
                         </button>
                         <button className="text-blue-800 font-semibold border-b-2 border-blue-800 pb-1 hover:text-blue-950 hover:border-blue-950 transition-colors cursor-pointer">
@@ -63,7 +67,7 @@ const HomePage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
                         {categories.map((category, idx) => (
-                            <div key={idx} className="group relative h-96 rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300">
+                            <div onClick={()=>Navigate(`/collections/${category.name.toLowerCase()}`)} key={idx} className="group relative h-96 rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300">
 
                                 {/* Background Image */}
                                 <img

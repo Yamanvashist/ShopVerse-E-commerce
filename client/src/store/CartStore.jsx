@@ -77,6 +77,34 @@ const useCartStore = create((set) => ({
 
             return { success: false, message };
         }
+    },
+
+    updateQuantity: async (productId, quantity, size) => {
+        try {
+            const { data } = await axios.put(
+                "http://localhost:4000/cart/update",
+                {
+                    productId: String(productId),
+                    quantity,
+                    size
+                },
+                { withCredentials: true }
+            );
+
+            set({
+                cart: data.cart?.items ?? [],
+                error: null
+            });
+
+            return { success: true };
+        } catch (err) {
+            const message =
+                err.response?.data?.message || "Could not update quantity";
+
+            set({ error: message });
+
+            return { success: false, message };
+        }
     }
 }))
 

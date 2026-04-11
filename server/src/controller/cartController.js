@@ -126,7 +126,11 @@ const removeFromCart = async (req, res) => {
 
 const updateCartItem = async (req, res) => {
   const userId = req.user.id;
-  const { productId, quantity } = req.body;
+  const { productId, quantity, size } = req.body;
+
+  if (!productId || size === undefined || size === null || quantity === undefined) {
+    return res.status(400).json({ message: "productId, quantity, and size are required" });
+  }
 
   try {
     let cart = await Cart.findOne({ user: userId });
@@ -136,14 +140,15 @@ const updateCartItem = async (req, res) => {
     }
 
     const itemIndex = cart.items.findIndex(
-      item => item.product.toString() === productId
+      item =>
+        item.product.toString() === String(productId) &&
+        item.size === size
     );
 
     if (itemIndex === -1) {
       return res.status(404).json({ message: "Product not in cart" });
     }
 
-    // 🔥 If quantity is 0 → remove item
     if (quantity <= 0) {
       cart.items.splice(itemIndex, 1);
     } else {
@@ -151,6 +156,7 @@ const updateCartItem = async (req, res) => {
     }
 
     await cart.save();
+    await cart.populate("items.product");
 
     res.status(200).json({
       success: true,

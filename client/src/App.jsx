@@ -16,6 +16,9 @@ import Dashboard from './pages/Admin/Dashboard'
 import AdminProtect from './Protect/AdminProtect'
 import AddProduct from './pages/Admin/AddProduct'
 import AdminLayout from './layouts/AdminLayout'
+import CollectionPage from './pages/CollectionPage'
+import Cart from './pages/Cart'
+import ProductDetails from './pages/ProductDetails'
 
 function App() {
 
@@ -44,7 +47,9 @@ function App() {
           <Route path="/arrivals" element={<Arrivals />} />
           <Route path="/archive" element={<Archive />} />
           <Route path="/about" element={<About />} />
-
+          <Route path="/cart" element={<Cart />} />
+          <Route path='/collections/:category' element={<CollectionPage/>}/>
+          <Route path='/product/:id' element={<ProductDetails/>}/>
 
         </Route>
 

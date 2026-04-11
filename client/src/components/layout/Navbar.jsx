@@ -85,7 +85,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Cart */}
-                    <div className='relative cursor-pointer group'>
+                    <div onClick={()=>Navigate("/cart")} className='relative cursor-pointer group'>
                         <ShoppingCart className='w-5 h-5 text-gray-600 group-hover:text-blue-900 transition-colors' />
                         <span className='absolute -top-2 -right-2 w-4 h-4 bg-blue-900 text-white text-[10px] font-bold rounded-full flex items-center justify-center'>0</span>
                     </div>

@@ -4,6 +4,7 @@ const connection = require("./src/config/usermongo")
 const userRouter = require("./src/routes/userRouter")
 const productRouter = require("./src/routes/productRouter")
 const cartRouter = require("./src/routes/cartRouter")
+const orderRoutes = require("./src/routes/orderRoutes")
 const cookieParser = require('cookie-parser');
 const cors = require("cors")
 
@@ -22,7 +23,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/user", userRouter);
 app.use("/product", productRouter)
-app.use("/cart",cartRouter)
+app.use("/cart", cartRouter)
+app.use("/order", orderRoutes)
 
 const port = process.env.PORT || 5000;
 

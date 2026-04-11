@@ -74,9 +74,28 @@ const addProduct = async (req, res) => {
         res.status(201).json({ success: true, product });
 
     } catch (err) {
-         console.log("ERROR:", err);
+        console.log("ERROR:", err);
         res.status(500).json({ success: false, message: "Error adding Product" });
     }
 };
 
-module.exports = { getProduct, getProductById, addProduct }
+const productByCategory = async (req, res) => {
+    const { category } = req.params;
+
+    try {
+        const CategoryProducts = await Product.find({ category: category.toLowerCase() });
+
+        console.log("Category requested:", category);
+
+        if (CategoryProducts.length === 0) {
+            return res.status(404).json({ message: "No products in this category" });
+        }
+
+        return res.json({ CategoryProducts,category });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Unable to fetch products" });
+    }
+}
+
+module.exports = { getProduct, getProductById, addProduct, productByCategory }
